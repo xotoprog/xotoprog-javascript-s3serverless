@@ -1,0 +1,15 @@
+service: xotoprog-javascript-s3serverless
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ${opt:region, 'eu-north-1'}
+  environment:
+    STAGE: ${opt:stage, 'dev'}
+  
+functions:
+  first_handler:
+    handler: functions/first_handler.handler
+    events: 
+      - schedule: rate(1 hour)
